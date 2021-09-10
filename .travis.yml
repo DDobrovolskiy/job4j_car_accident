@@ -11,7 +11,7 @@ before_install:
 
 env:
   global:
-    - CODECOV_TOKEN="571d0f85-405b-4031-88de-3a1e91661c0e"
+    - CODECOV_TOKEN="087f0e09-ba43-4d39-b0e9-a777eaaf306e"
 
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
