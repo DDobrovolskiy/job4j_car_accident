@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="ru.job4j.accident.models.Accident" %>
 <html>
 <head>
     <title>Accident</title>
@@ -24,14 +25,26 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Наименование</th>
+                            <th scope="col">id</th>
+                            <th scope="col">name</th>
+                            <th scope="col">address</th>
+                            <th scope="col">text</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${list}" var="element">
+                        <c:forEach items="${accidents}" var="accident">
                              <tr>
                                 <td>
-                                    <c:out value="${element}"/>
+                                    <c:out value="${accident.id}"/>
+                                </td>
+                                <td>
+                                     <c:out value="${accident.name}"/>
+                                </td>
+                                <td>
+                                     <c:out value="${accident.address}"/>
+                                </td>
+                                <td>
+                                     <c:out value="${accident.text}"/>
                                 </td>
                             </tr>
                         </c:forEach>
