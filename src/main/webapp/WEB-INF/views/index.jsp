@@ -19,32 +19,36 @@
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Инциденты
+                <a href="<c:url value='/create'/>">Добавить инцидент</a>
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">id</th>
-                            <th scope="col">name</th>
-                            <th scope="col">address</th>
-                            <th scope="col">text</th>
+                            <th scope="col">Номер</th>
+                            <th scope="col">Имя</th>
+                            <th scope="col">Адресс</th>
+                            <th scope="col">Описание</th>
+                            <th scope="col">Изменить</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach items="${accidents}" var="accident">
                              <tr>
                                 <td>
-                                    <c:out value="${accident.id}"/>
+                                    <c:out value="${accident.getId()}"/>
                                 </td>
                                 <td>
-                                     <c:out value="${accident.name}"/>
+                                     <c:out value="${accident.getName()}"/>
                                 </td>
                                 <td>
-                                     <c:out value="${accident.address}"/>
+                                     <c:out value="${accident.getAddress()}"/>
                                 </td>
                                 <td>
-                                     <c:out value="${accident.text}"/>
+                                     <c:out value="${accident.getText()}"/>
+                                </td>
+                                <td>
+                                     <a href="<c:url value='/edit?id=${accident.getId()}'/>">Редактировать инцидент</a>
                                 </td>
                             </tr>
                         </c:forEach>

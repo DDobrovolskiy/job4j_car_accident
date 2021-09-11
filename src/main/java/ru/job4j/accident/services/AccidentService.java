@@ -28,7 +28,15 @@ public class AccidentService {
         accidentMem.add(accident2);
     }
 
-    public List<Accident> getAccidentsMem() {
+    public List<Accident> getAccidents() {
         return accidentMem.getAccidents();
+    }
+
+    public void add(Accident accident) {
+        accidentMem.add(accident);
+    }
+
+    public Accident get(int id) {
+        return accidentMem.get(id);
     }
 }

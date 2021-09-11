@@ -10,7 +10,7 @@ import java.util.Objects;
 @Setter
 @ToString
 public class Accident {
-    private int id;
+    private Integer id = 0;
     private String name;
     private String text;
     private String address;
