@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accident.models.Accident;
 import ru.job4j.accident.services.AccidentService;
 
@@ -19,14 +20,10 @@ public class AccidentControl {
     }
 
     @GetMapping("/edit")
-    public String edit(@ModelAttribute Accident accident, Model model) {
-        log.debug("Id accident on edit: {}", accident.getId());
-        if (accident.getId() == null) {
-            return "redirect:/";
-        } else {
-            model.addAttribute("accident", accidentService.get(accident.getId()));
-            return "accident/edit";
-        }
+    public String edit(@RequestParam("id") int id, Model model) {
+        log.debug("Id accident on edit: {}", id);
+        model.addAttribute("accident", accidentService.get(id));
+        return "accident/edit";
     }
 
     @GetMapping("/create")
