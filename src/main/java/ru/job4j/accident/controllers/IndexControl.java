@@ -10,14 +10,8 @@ import java.util.List;
 public class IndexControl {
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("user", "Petr Arsentev");
-        return "index";
-    }
-
-    @GetMapping("/bootstap")
-    public String bootstap(Model model) {
         List<String> list = List.of("Element 1", "Element 2");
         model.addAttribute("list", list);
-        return "bootstap";
+        return "index";
     }
 }
