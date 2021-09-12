@@ -33,6 +33,15 @@
                             </select>
                     </tr>
                     <tr>
+                        <td>Статьи:</td>
+                        <td>
+                            <select name="rIds" multiple>
+                                <c:forEach var="rule" items="${rules}" >
+                                    <option value="${rule.id}">${rule.name}</option>
+                                </c:forEach>
+                            </select>
+                    </tr>
+                    <tr>
                         <td>Имя:</td>
                         <td><input type='text' name='name' required></td>
                     </tr>

@@ -28,7 +28,21 @@
                         <td>
                             <select name="type.id" value="${accident.getType().getId()}">
                                 <c:forEach var="type" items="${types}" >
-                                    <option value="${type.getId()}">${type.getName()}</option>
+                                    <option selected='${accident.getType().getId()==type.getId()?"selected":""}' value="${type.getId()}">${type.getName()}</option>
+                                </c:forEach>
+                            </select>
+                    </tr>
+                    <tr>
+                        <td>Статьи:</td>
+                        <td>
+                            <select name="rIds" multiple>
+                                <c:forEach var="rule" items="${rules}" >
+                                    <c:if test="${accident.getRules().contains(rule) == true}">
+                                        <option selected value="${rule.id}">${rule.name}</option>
+                                    </c:if>
+                                    <c:if test="${accident.getRules().contains(rule) == false}">
+                                        <option value="${rule.id}">${rule.name}</option>
+                                    </c:if>
                                 </c:forEach>
                             </select>
                     </tr>

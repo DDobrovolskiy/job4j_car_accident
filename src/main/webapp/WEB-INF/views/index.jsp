@@ -27,6 +27,7 @@
                         <tr>
                             <th scope="col">Номер</th>
                             <th scope="col">Тип происшествия</th>
+                            <th scope="col">Нарушения</th>
                             <th scope="col">Имя</th>
                             <th scope="col">Адресс</th>
                             <th scope="col">Описание</th>
@@ -41,6 +42,11 @@
                                 </td>
                                 <td>
                                     <c:out value="${accident.getType().getName()}"/>
+                                </td>
+                                <td>
+                                    <c:forEach var="rule" items="${accident.getRules()}" >
+                                        <p><c:out value="${rule.getName()}"/></p>
+                                    </c:forEach>
                                 </td>
                                 <td>
                                      <c:out value="${accident.getName()}"/>

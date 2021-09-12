@@ -4,10 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.models.Accident;
 import ru.job4j.accident.models.AccidentType;
+import ru.job4j.accident.models.Rule;
 import ru.job4j.accident.repository.AccidentDAO;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Slf4j
@@ -22,13 +25,18 @@ public class AccidentService {
         return accidentDAO.getAccidents();
     }
 
-    public void addAccident(Accident accident) {
+    public void addAccident(Accident accident, String[] ids) {
         try {
             Optional<AccidentType> type = accidentDAO.getType(accident.getType().getId());
             accident.setType(type.orElseThrow());
+            Set<Rule> rules = new HashSet<>();
+            for (String id : ids) {
+                rules.add(accidentDAO.getRule(Integer.parseInt(id)).orElseThrow());
+            }
+            accident.setRules(rules);
             accidentDAO.addAccident(accident);
         } catch (Exception e) {
-            log.error("Ошибка индекса типа инцедента, не найден в базе", e);
+            log.error("Ошибка индекса, не найден в базе", e);
         }
     }
 
@@ -45,5 +53,9 @@ public class AccidentService {
 
     public List<AccidentType> getTypes() {
         return accidentDAO.getTypes();
+    }
+
+    public List<Rule> getRules() {
+        return accidentDAO.getRules();
     }
 }
