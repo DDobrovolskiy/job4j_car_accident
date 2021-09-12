@@ -22,18 +22,21 @@ public class AccidentControl {
     @GetMapping("/edit")
     public String edit(@RequestParam("id") int id, Model model) {
         log.debug("Id accident on edit: {}", id);
-        model.addAttribute("accident", accidentService.get(id));
+        model.addAttribute("types", accidentService.getTypes());
+        model.addAttribute("accident", accidentService.getAccident(id));
         return "accident/edit";
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("types", accidentService.getTypes());
         return "accident/create";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident) {
-        accidentService.add(accident);
+        log.debug(accident.toString());
+        accidentService.addAccident(accident);
         return "redirect:/";
     }
 }

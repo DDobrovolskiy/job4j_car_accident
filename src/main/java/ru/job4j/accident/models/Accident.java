@@ -1,37 +1,18 @@
 package ru.job4j.accident.models;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Objects;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @ToString
+@EqualsAndHashCode
 public class Accident {
     private int id;
     private String name;
     private String text;
     private String address;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Accident accident = (Accident) o;
-        return id == accident.id
-                && Objects.equals(name, accident.name)
-                && Objects.equals(text, accident.text)
-                && Objects.equals(address, accident.address);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, text, address);
-    }
+    private AccidentType type;
 }

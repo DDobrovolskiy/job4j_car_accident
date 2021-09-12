@@ -24,6 +24,15 @@
             <div class="card-body">
                 <table class="table">
                     <tr>
+                        <td>Тип:</td>
+                        <td>
+                            <select name="type.id" value="${accident.getType().getId()}">
+                                <c:forEach var="type" items="${types}" >
+                                    <option value="${type.getId()}">${type.getName()}</option>
+                                </c:forEach>
+                            </select>
+                    </tr>
+                    <tr>
                         <td>Имя:</td>
                         <td><input type='text' name='name'  value="${accident.getName()}" required></td>
                     </tr>

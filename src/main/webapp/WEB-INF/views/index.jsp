@@ -26,6 +26,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Номер</th>
+                            <th scope="col">Тип происшествия</th>
                             <th scope="col">Имя</th>
                             <th scope="col">Адресс</th>
                             <th scope="col">Описание</th>
@@ -37,6 +38,9 @@
                              <tr>
                                 <td>
                                     <c:out value="${accident.getId()}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${accident.getType().getName()}"/>
                                 </td>
                                 <td>
                                      <c:out value="${accident.getName()}"/>
