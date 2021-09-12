@@ -3,29 +3,29 @@ package ru.job4j.accident.repository;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.models.Accident;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem {
-    private final Map<Integer, Accident> accidents = new HashMap<>();
-    private int count = 0;
+    private static final Map<Integer, Accident> ACCIDENTS = new ConcurrentHashMap<>();
+    private static final AtomicInteger COUNT = new AtomicInteger();
 
     public Accident add(Accident accident) {
-        if ((accident.getId() <= 0) || (accident.getId() > count)) {
-            count++;
-            accident.setId(count);
+        if ((accident.getId() <= 0) || (accident.getId() > COUNT.get())) {
+            accident.setId(COUNT.incrementAndGet());
         }
-        accidents.put(accident.getId(), accident);
+        ACCIDENTS.put(accident.getId(), accident);
         return accident;
     }
 
     public List<Accident> getAccidents() {
-        return List.copyOf(accidents.values());
+        return List.copyOf(ACCIDENTS.values());
     }
 
     public Accident get(int id) {
-        return accidents.get(id);
+        return ACCIDENTS.get(id);
     }
 }
