@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Repository
+//@Repository
 public class AccidentJdbcTemplate implements AccidentDAO {
 
     private final JdbcTemplate jdbc;

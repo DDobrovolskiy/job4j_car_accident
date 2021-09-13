@@ -1,36 +1,34 @@
 package ru.job4j.accident.models;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.*;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
-@ToString
+@Entity
+@Table(name = "hbn_accident_types")
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString(of = {"id", "name"})
 public class AccidentType {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String name;
+    @OneToMany(mappedBy = "type")
+    private List<Accident> accidents = new LinkedList<>();
 
     public static AccidentType of(int id, String name) {
         AccidentType type = new AccidentType();
         type.id = id;
         type.name = name;
         return type;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override

@@ -2,6 +2,8 @@ package ru.job4j.accident.services;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import ru.job4j.accident.models.Accident;
 import ru.job4j.accident.models.AccidentType;
 import ru.job4j.accident.models.Rule;
@@ -17,14 +19,17 @@ import java.util.Set;
 public class AccidentService {
     private final AccidentDAO accidentDAO;
 
-    private AccidentService(AccidentDAO accidentDAO) {
+    public AccidentService(AccidentDAO accidentDAO) {
         this.accidentDAO = accidentDAO;
     }
 
     public List<Accident> getAccidents() {
-        return accidentDAO.getAccidents();
+        List<Accident> rsl = accidentDAO.getAccidents();
+        log.debug(rsl.toString());
+        return rsl;
     }
 
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void addAccident(Accident accident, String[] ids) {
         try {
             Optional<AccidentType> type = accidentDAO.getType(accident.getType().getId());
