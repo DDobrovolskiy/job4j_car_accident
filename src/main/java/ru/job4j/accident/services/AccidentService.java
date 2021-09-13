@@ -2,7 +2,6 @@ package ru.job4j.accident.services;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.job4j.accident.models.Accident;
 import ru.job4j.accident.models.AccidentType;
@@ -29,7 +28,7 @@ public class AccidentService {
         return rsl;
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional
     public void addAccident(Accident accident, String[] ids) {
         try {
             Optional<AccidentType> type = accidentDAO.getType(accident.getType().getId());
@@ -39,6 +38,7 @@ public class AccidentService {
                 rules.add(accidentDAO.getRule(Integer.parseInt(id)).orElseThrow());
             }
             accident.setRules(rules);
+            log.debug(accident.toString());
             accidentDAO.addAccident(accident);
         } catch (Exception e) {
             log.error("Ошибка индекса, не найден в базе", e);

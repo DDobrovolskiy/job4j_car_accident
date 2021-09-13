@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+//@Repository
 @Slf4j
 public class AccidentHibernate implements AccidentDAO {
     private final SessionFactory sf;
