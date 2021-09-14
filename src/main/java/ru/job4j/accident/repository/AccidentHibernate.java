@@ -44,7 +44,9 @@ public class AccidentHibernate implements AccidentDAO {
             log.debug("Get accidents");
             var rsl = session
                     .createQuery(
-                            "from Accident",
+                            "SELECT DISTINCT a "
+                                    + "FROM Accident a "
+                                    + "JOIN FETCH a.rules",
                             Accident.class)
                     .list();
             //log.debug(rsl.toString());
@@ -60,7 +62,10 @@ public class AccidentHibernate implements AccidentDAO {
         try (Session session = sf.openSession()) {
             return  Optional.ofNullable(session
                     .createQuery(
-                            "from Accident a WHERE a.id = :idAcc",
+                            "SELECT DISTINCT a "
+                                    + "FROM Accident a "
+                                    + "JOIN FETCH a.rules "
+                                    + "WHERE a.id = :idAcc",
                             Accident.class)
                     .setParameter("idAcc", id)
                     .getSingleResult());

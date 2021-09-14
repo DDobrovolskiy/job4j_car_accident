@@ -26,6 +26,6 @@ public class Accident {
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.REFRESH,
-            CascadeType.MERGE}, fetch = FetchType.EAGER)
+            CascadeType.MERGE})
     private Set<Rule> rules = new HashSet<>();
 }
