@@ -26,3 +26,16 @@ CREATE TABLE IF NOT EXISTS accidents_rules (
     FOREIGN KEY (rule_id) REFERENCES rules (rule_id),
     UNIQUE (accident_id, rule_id)
 );
+
+CREATE TABLE IF NOT EXISTS users (
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  enabled boolean default true,
+  PRIMARY KEY (username)
+);
+
+CREATE TABLE IF NOT EXISTS authorities (
+  username VARCHAR(50) NOT NULL,
+  authority VARCHAR(50) NOT NULL,
+  FOREIGN KEY (username) REFERENCES users(username)
+);

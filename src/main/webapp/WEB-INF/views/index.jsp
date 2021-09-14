@@ -15,6 +15,9 @@
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 </head>
 <body>
+<div>
+    Login as : ${user.username}
+</div>
 <div class="container pt-3">
     <div class="row">
         <div class="card" style="width: 100%">
