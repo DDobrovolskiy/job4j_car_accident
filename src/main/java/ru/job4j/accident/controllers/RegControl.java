@@ -18,11 +18,7 @@ public class RegControl {
 
     @PostMapping("/reg")
     public String save(@ModelAttribute User user) {
-        if (userServices.registration(user)) {
-            return "redirect:/login";
-        } else {
-            return reg();
-        }
+        return userServices.registration(user) ? "redirect:/login" : reg();
     }
 
     @GetMapping("/reg")
